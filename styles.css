@@ -1,0 +1,1638 @@
+/* Global Styles */
+body {
+    padding-top: 56px;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    background: #0a0a0a;
+    cursor: none;
+    margin: 0;
+    min-height: 100vh;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+/* Global Grid Effect */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px) 0 0,
+        linear-gradient(0deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px) 0 0;
+    background-size: 30px 30px;
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: center center;
+    animation: globalGridMove 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Global Scanlines */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        rgba(0, 0, 0, 0.1) 1px,
+        rgba(0, 255, 255, 0.01) 1px,
+        rgba(0, 255, 255, 0.01) 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    animation: scanline 10s linear infinite;
+    opacity: 0.3;
+}
+
+/* Hero Section with Grid Effect */
+.hero-section {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('https://images.unsplash.com/photo-1682687982501-1e58ab814714?q=80&w=1470&auto=format&fit=crop') no-repeat center center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding: 80px 20px 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Grid Effect Container */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px) 0 0,
+        linear-gradient(0deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px) 0 0;
+    background-size: 40px 40px;
+    animation: gridMove 20s linear infinite;
+    pointer-events: none;
+}
+
+/* Moving Lines Effect */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(90deg,
+            transparent 0%,
+            transparent 48%,
+            rgba(0, 255, 255, 0.1) 49%,
+            rgba(0, 255, 255, 0.1) 51%,
+            transparent 52%,
+            transparent 100%);
+    background-size: 200px 100%;
+    animation: scanlines 8s linear infinite;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Neon Blocks */
+.neon-blocks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.neon-block {
+    position: absolute;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    animation: blockPulse 3s infinite;
+}
+
+/* Grid Movement Animation */
+@keyframes gridMove {
+    0% {
+        transform: perspective(500px) rotateX(60deg) translateY(0);
+    }
+    100% {
+        transform: perspective(500px) rotateX(60deg) translateY(40px);
+    }
+}
+
+/* Scanlines Animation */
+@keyframes scanlines {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+/* Block Pulse Animation */
+@keyframes blockPulse {
+    0%, 100% {
+        opacity: 0.3;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    }
+    50% {
+        opacity: 0.5;
+        box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+    }
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 2rem;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Section Button */
+.hero-section .btn {
+    position: relative;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #0ff;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    transition: 0.5s;
+    box-shadow: 0 0 15px #0ff,
+                0 0 35px #0ff,
+                0 0 75px #0ff;
+    text-shadow: 0 0 15px #0ff;
+    animation: buttonPulse 2s infinite;
+}
+
+.hero-section .btn:hover {
+    background: #0ff;
+    color: #000;
+    box-shadow: 0 0 25px #0ff,
+                0 0 45px #0ff,
+                0 0 85px #0ff;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+}
+
+.hero-section .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
+    transition: 0.5s;
+}
+
+.hero-section .btn:hover::before {
+    left: 100%;
+}
+
+/* Pulsing animation for the button */
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 0 15px #0ff,
+                   0 0 35px #0ff,
+                   0 0 75px #0ff;
+    }
+    50% {
+        box-shadow: 0 0 20px #0ff,
+                   0 0 45px #0ff,
+                   0 0 85px #0ff;
+    }
+    100% {
+        box-shadow: 0 0 15px #0ff,
+                   0 0 35px #0ff,
+                   0 0 75px #0ff;
+    }
+}
+
+/* Mobile adjustments for the button */
+@media (max-width: 768px) {
+    .hero-section .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        box-shadow: 0 0 10px #0ff,
+                   0 0 25px #0ff,
+                   0 0 55px #0ff;
+    }
+}
+
+/* Destination Cards */
+#destinations {
+    background-color: #f8f9fa;
+    padding: 80px 0;
+    z-index: 3;
+    background: #fff !important;
+    color: #000;
+}
+
+.destination-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
+}
+
+.destination-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.image-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+}
+
+.destination-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.destination-card:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.destination-card:hover .overlay {
+    opacity: 1;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #2d3436;
+}
+
+.card-text {
+    color: #636e72;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.rating {
+    font-weight: 500;
+    color: #2d3436;
+}
+
+.rating i {
+    color: #ffd700;
+}
+
+.location i {
+    font-size: 1.2rem;
+    color: #0984e3;
+}
+
+/* Navigation Styles */
+.navbar {
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(10px);
+    padding: 0.5rem;
+}
+
+.navbar-brand {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    position: relative;
+    text-decoration: none;
+    z-index: 1001;
+    position: relative;
+    padding: 0.5rem;
+}
+
+.droop {
+    color: #ff0080;
+    text-shadow: 0 0 10px #ff0080,
+                 0 0 20px #ff0080,
+                 0 0 30px #ff0080;
+    animation: glow-1 2s ease-in-out infinite alternate;
+}
+
+.trip {
+    color: #00ff7f;
+    text-shadow: 0 0 10px #00ff7f,
+                 0 0 20px #00ff7f,
+                 0 0 30px #00ff7f;
+    animation: glow-2 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow-1 {
+    from {
+        text-shadow: 0 0 10px #ff0080,
+                     0 0 20px #ff0080,
+                     0 0 30px #ff0080;
+    }
+    to {
+        text-shadow: 0 0 20px #ff0080,
+                     0 0 30px #ff0080,
+                     0 0 40px #ff0080,
+                     0 0 50px #ff0080;
+    }
+}
+
+@keyframes glow-2 {
+    from {
+        text-shadow: 0 0 10px #00ff7f,
+                     0 0 20px #00ff7f,
+                     0 0 30px #00ff7f;
+    }
+    to {
+        text-shadow: 0 0 20px #00ff7f,
+                     0 0 30px #00ff7f,
+                     0 0 40px #00ff7f,
+                     0 0 50px #00ff7f;
+    }
+}
+
+.nav-item {
+    margin: 0 10px;
+}
+
+.navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Mobile menu styles */
+@media (max-width: 991px) {
+    .navbar-collapse {
+        background: rgba(0, 0, 0, 0.95);
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+    }
+
+    .nav-link {
+        padding: 0.8rem !important;
+        text-align: center;
+        margin: 5px 0;
+    }
+
+    .neon-button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/* Neon Button Styles */
+.neon-button {
+    position: relative;
+    display: inline-block;
+    padding: 12px 25px !important;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    letter-spacing: 3px;
+    border-radius: 30px;
+    background: transparent;
+    color: var(--neon-color, #03e9f4) !important;
+    z-index: 1001;
+    position: relative;
+}
+
+.neon-button:hover {
+    background: var(--neon-color, #03e9f4);
+    color: #fff !important;
+    box-shadow: 0 0 5px var(--neon-color, #03e9f4),
+                0 0 25px var(--neon-color, #03e9f4),
+                0 0 50px var(--neon-color, #03e9f4),
+                0 0 100px var(--neon-color, #03e9f4);
+    animation: jiggle 0.5s ease-in-out infinite;
+}
+
+.neon-button span {
+    position: absolute;
+    display: block;
+}
+
+.neon-button span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-color, #03e9f4));
+    animation: btn-anim1 3s linear infinite;
+}
+
+.neon-button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--neon-color, #03e9f4));
+    animation: btn-anim2 3s linear infinite;
+    animation-delay: 0.75s;
+}
+
+.neon-button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, var(--neon-color, #03e9f4));
+    animation: btn-anim3 3s linear infinite;
+    animation-delay: 1.5s;
+}
+
+.neon-button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, var(--neon-color, #03e9f4));
+    animation: btn-anim4 3s linear infinite;
+    animation-delay: 2.25s;
+}
+
+/* Neon Button Animations */
+@keyframes btn-anim1 {
+    0% { left: -100%; }
+    40%, 100% { left: 100%; }
+}
+
+@keyframes btn-anim2 {
+    0% { top: -100%; }
+    40%, 100% { top: 100%; }
+}
+
+@keyframes btn-anim3 {
+    0% { right: -100%; }
+    40%, 100% { right: 100%; }
+}
+
+@keyframes btn-anim4 {
+    0% { bottom: -100%; }
+    40%, 100% { bottom: 100%; }
+}
+
+@keyframes jiggle {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1) rotate(-1deg); }
+    50% { transform: scale(1) rotate(1deg); }
+    75% { transform: scale(1.1) rotate(-1deg); }
+    100% { transform: scale(1) rotate(0); }
+}
+
+/* Section Glow Effects */
+section {
+    position: relative;
+    background: rgba(10, 10, 10, 0.8);
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    margin: 2rem 0;
+    padding: 3rem 1rem;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 255, 0.2),
+        transparent
+    );
+    animation: borderGlow 3s linear infinite;
+}
+
+/* Card Cyberpunk Style */
+.card {
+    background: rgba(20, 20, 20, 0.8) !important;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 255, 255, 0.3);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.1),
+        0 0 60px rgba(0, 255, 255, 0.05);
+}
+
+/* Text Glow Effects */
+h1, h2, h3 {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+/* Animated Background Lines */
+@keyframes globalGridMove {
+    0% {
+        transform: perspective(500px) rotateX(60deg) translateY(0);
+    }
+    100% {
+        transform: perspective(500px) rotateX(60deg) translateY(30px);
+    }
+}
+
+@keyframes scanline {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Form Elements Cyberpunk Style */
+.form-control {
+    background: rgba(20, 20, 20, 0.8) !important;
+    border: 1px solid rgba(0, 255, 255, 0.1) !important;
+    color: #fff !important;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1) !important;
+    border-color: rgba(0, 255, 255, 0.3) !important;
+}
+
+/* Links Cyberpunk Style */
+a:not(.btn) {
+    color: #0ff;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+a:not(.btn):hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Container Glow */
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure content is above effects */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* Mobile and Tablet Styles */
+html, body {
+    position: relative;
+    background: #0a0a0a;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    color: #fff;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Sections padding for mobile */
+section {
+    padding: 60px 20px;
+}
+
+/* Card styles for mobile */
+.card {
+    margin-bottom: 20px;
+    border-radius: 15px;
+}
+
+/* Form styles for mobile */
+.form-control {
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+/* Footer adjustments */
+footer {
+    position: relative;
+    background: #1a1a1a !important;
+    color: #fff !important;
+    padding: 60px 0 40px;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+/* Footer Neon Blocks */
+footer .neon-blocks {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+footer .neon-block {
+    position: absolute;
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    animation: footerBlockPulse 4s infinite;
+}
+
+@keyframes footerBlockPulse {
+    0%, 100% {
+        opacity: 0.2;
+        border-color: rgba(0, 255, 255, 0.2);
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+    }
+    50% {
+        opacity: 0.4;
+        border-color: rgba(0, 255, 255, 0.4);
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    }
+}
+
+/* Enhanced Footer Grid */
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px) 0 0,
+        linear-gradient(0deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px) 0 0;
+    background-size: 20px 20px;
+    animation: footerGridMove 15s linear infinite;
+    pointer-events: none;
+    opacity: 0.4;
+    transform-origin: center bottom;
+    transform: perspective(500px) rotateX(60deg);
+}
+
+/* Enhanced Footer Lines */
+footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(180deg,
+            transparent 0%,
+            transparent 48%,
+            rgba(0, 255, 255, 0.15) 49%,
+            rgba(0, 255, 255, 0.15) 51%,
+            transparent 52%,
+            transparent 100%);
+    background-size: 100% 8px;
+    animation: footerScanlines 8s linear infinite;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+/* Enhanced Social Links */
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    animation: socialPulse 3s infinite;
+}
+
+.social-links a:hover::before {
+    width: 55px;
+    height: 55px;
+    border-color: rgba(0, 255, 255, 0.8);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.4),
+        0 0 40px rgba(0, 255, 255, 0.2);
+}
+
+/* Footer Grid Animation */
+@keyframes footerGridMove {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(30px);
+    }
+}
+
+/* Footer Scanlines Animation */
+@keyframes footerScanlines {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100px);
+    }
+}
+
+/* Social Icons Pulse Animation */
+@keyframes socialPulse {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* Copyright Text with Glow */
+footer .copyright {
+    position: relative;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+    margin-top: 20px;
+}
+
+/* Social Links */
+.social-links a {
+    font-size: 1.5rem;
+    transition: opacity 0.3s ease;
+}
+
+.social-links a:hover {
+    opacity: 0.7;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 25px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Form Styles */
+.form-control {
+    border-radius: 0;
+    padding: 12px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #007bff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        height: 70vh;
+    }
+    
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-section p {
+        font-size: 1.2rem;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Spotlight Effect */
+html, body {
+    position: relative;
+    background: #0a0a0a;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.spotlight-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.spotlight-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    mask: radial-gradient(
+        circle 100px at var(--x, 50%) var(--y, 50%),
+        transparent 0,
+        transparent 80px,
+        #000 100px
+    );
+    -webkit-mask: radial-gradient(
+        circle 100px at var(--x, 50%) var(--y, 50%),
+        transparent 0,
+        transparent 80px,
+        #000 100px
+    );
+}
+
+/* Make sure the spotlight container covers everything */
+#root, .App, main, .content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+}
+
+/* Content container to ensure proper stacking */
+.content-container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Ensure all sections are properly positioned */
+section, 
+.section,
+.hero-section,
+#destinations,
+#about,
+#contact,
+footer {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+/* Custom cursor */
+.cursor {
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+}
+
+/* Content Styles */
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure content is visible */
+.navbar,
+.hero-section,
+#destinations,
+#about,
+#contact,
+footer {
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
+}
+
+.card, 
+.btn,
+.form-control {
+    background: transparent !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.card {
+    backdrop-filter: blur(5px);
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Prevent horizontal scrollbar */
+.container {
+    overflow-x: hidden;
+}
+
+/* Dark sections */
+footer, 
+.bg-dark {
+    background: #1a1a1a !important;
+    color: #fff !important;
+}
+
+/* Content sections */
+#about,
+#contact {
+    position: relative;
+    z-index: 3;
+    background: #fff !important;
+    color: #000;
+}
+
+/* Cyberpunk Background Elements */
+.cyber-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.cyber-element {
+    position: absolute;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    background: rgba(0, 255, 255, 0.02);
+    border-radius: 4px;
+    animation: floatElement 15s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatElement {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.3;
+    }
+    80% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(100px, -100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Glitch Effect */
+.glitch {
+    animation: glitchText 0.5s linear;
+}
+
+@keyframes glitchText {
+    0% {
+        text-shadow: 2px 2px #ff0000;
+        transform: translate(2px, 2px);
+    }
+    25% {
+        text-shadow: -2px -2px #00ff00;
+        transform: translate(-2px, -2px);
+    }
+    50% {
+        text-shadow: 2px -2px #0000ff;
+        transform: translate(2px, -2px);
+    }
+    75% {
+        text-shadow: -2px 2px #ff00ff;
+        transform: translate(-2px, 2px);
+    }
+    100% {
+        text-shadow: 2px 2px #00ffff;
+        transform: translate(0, 0);
+    }
+}
+
+/* Enhanced Content Transitions */
+.content-wrapper {
+    transition: all 0.5s ease;
+}
+
+.content-wrapper:hover {
+    transform: scale(1.01);
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Loading Animation */
+.loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    border: 2px solid transparent;
+    border-top-color: #0ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dark Cyberpunk Sections */
+.about-section, .contact-section {
+    background: rgba(5, 5, 10, 0.95);
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.05),
+        inset 0 0 50px rgba(0, 0, 0, 0.8);
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    margin: 4rem 0;
+    border-radius: 15px;
+}
+
+.about-section::before, .contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(0, 255, 255, 0.05) 50%, transparent 52%) center / 10px 10px,
+        linear-gradient(-45deg, transparent 48%, rgba(0, 255, 255, 0.05) 50%, transparent 52%) center / 10px 10px;
+    pointer-events: none;
+    animation: gridPatternMove 20s linear infinite;
+}
+
+.about-section::after, .contact-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(0, 255, 255, 0.2),
+        rgba(0, 255, 255, 0.4),
+        rgba(0, 255, 255, 0.2),
+        transparent
+    );
+    animation: neonBorderFlow 3s ease-in-out infinite;
+}
+
+/* Enhanced Form Elements */
+.contact-section .form-control {
+    background: rgba(10, 10, 15, 0.8) !important;
+    border: 1px solid rgba(0, 255, 255, 0.15) !important;
+    color: #fff !important;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.contact-section .form-control:focus {
+    background: rgba(15, 15, 25, 0.9) !important;
+    border-color: rgba(0, 255, 255, 0.4) !important;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 255, 0.1),
+        inset 0 0 10px rgba(0, 255, 255, 0.05) !important;
+}
+
+/* Section Headers with Circuit Pattern */
+.about-section h2, .contact-section h2 {
+    position: relative;
+    color: #0ff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+.about-section h2::after, .contact-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: 
+        linear-gradient(90deg,
+            transparent,
+            rgba(0, 255, 255, 0.3),
+            rgba(0, 255, 255, 0.5),
+            rgba(0, 255, 255, 0.3),
+            transparent
+        );
+}
+
+/* Animated Background Circuit */
+@keyframes gridPatternMove {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 20px 20px;
+    }
+}
+
+@keyframes neonBorderFlow {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Enhanced Text Content */
+.about-section p, .contact-section p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.8;
+    position: relative;
+    z-index: 1;
+}
+
+/* Submit Button Enhancement */
+.contact-section .btn-primary {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #0ff;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.contact-section .btn-primary:hover {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: rgba(0, 255, 255, 0.5);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.2),
+        inset 0 0 15px rgba(0, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.contact-section .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(0, 255, 255, 0.1);
+    transform: rotate(45deg);
+    animation: buttonGlow 3s linear infinite;
+}
+
+@keyframes buttonGlow {
+    0% {
+        transform: rotate(45deg) translateY(100%);
+    }
+    100% {
+        transform: rotate(45deg) translateY(-100%);
+    }
+}
+
+/* Dark Cyberpunk Content Areas */
+.about-section, .contact-section {
+    background: rgba(5, 5, 10, 0.95);
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.05),
+        inset 0 0 50px rgba(0, 0, 0, 0.8);
+    padding: 3rem 2rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    margin: 4rem 0;
+    border-radius: 15px;
+}
+
+/* Make all content within these sections dark */
+.about-section *, .contact-section * {
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: transparent !important;
+}
+
+.about-section .card, .contact-section .card {
+    background: rgba(5, 5, 10, 0.95) !important;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.05),
+        inset 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.about-section .card:hover, .contact-section .card:hover {
+    border-color: rgba(0, 255, 255, 0.3);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.1),
+        inset 0 0 40px rgba(0, 0, 0, 0.9);
+    transform: translateY(-5px);
+}
+
+/* Content Background Effects */
+.about-section .content-area, .contact-section .content-area {
+    background: rgba(5, 5, 10, 0.95) !important;
+    border: 1px solid rgba(0, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-section .content-area::before, .contact-section .content-area::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 48%, rgba(0, 255, 255, 0.05) 50%, transparent 52%) center / 10px 10px,
+        linear-gradient(-45deg, transparent 48%, rgba(0, 255, 255, 0.05) 50%, transparent 52%) center / 10px 10px;
+    pointer-events: none;
+    animation: gridPatternMove 20s linear infinite;
+    opacity: 0.3;
+}
+
+/* Enhanced Text Elements */
+.about-section h1, .about-section h2, .about-section h3,
+.contact-section h1, .contact-section h2, .contact-section h3 {
+    color: #0ff !important;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.about-section p, .contact-section p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+}
+
+/* Form Elements in Dark Theme */
+.about-section input, .about-section textarea,
+.contact-section input, .contact-section textarea {
+    background: rgba(10, 10, 15, 0.8) !important;
+    border: 1px solid rgba(0, 255, 255, 0.15) !important;
+    color: #fff !important;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.about-section input:focus, .about-section textarea:focus,
+.contact-section input:focus, .contact-section textarea:focus {
+    border-color: rgba(0, 255, 255, 0.4) !important;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 255, 0.1),
+        inset 0 0 20px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* Button Styling */
+.about-section .btn, .contact-section .btn {
+    background: rgba(0, 255, 255, 0.1) !important;
+    border: 1px solid rgba(0, 255, 255, 0.3) !important;
+    color: #0ff !important;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.about-section .btn:hover, .contact-section .btn:hover {
+    background: rgba(0, 255, 255, 0.2) !important;
+    border-color: rgba(0, 255, 255, 0.5) !important;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.2),
+        inset 0 0 15px rgba(0, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Neon Border Animation */
+.about-section::after, .contact-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(0, 255, 255, 0.2),
+        rgba(0, 255, 255, 0.4),
+        rgba(0, 255, 255, 0.2),
+        transparent
+    );
+    animation: neonBorderFlow 3s ease-in-out infinite;
+}
+
+/* List Items */
+.about-section ul li, .contact-section ul li {
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+    position: relative;
+    padding-left: 1.5em;
+}
+
+.about-section ul li::before, .contact-section ul li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: #0ff !important;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    /* General Adjustments */
+    body {
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Navigation */
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .navbar-toggler {
+        border-color: rgba(0, 255, 255, 0.2);
+        background: rgba(0, 255, 255, 0.1);
+    }
+
+    /* Hero Section */
+    .hero-section {
+        height: 60vh;
+        padding: 2rem 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    /* Spotlight Effect */
+    .spotlight {
+        display: none; /* Disable on mobile for better performance */
+    }
+
+    /* Neon Blocks */
+    .neon-blocks .neon-block {
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    /* Cards */
+    .card {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    /* About & Contact Sections */
+    .about-section, .contact-section {
+        padding: 2rem 1rem;
+        margin: 2rem 0;
+    }
+
+    .content-area {
+        padding: 1.5rem 1rem;
+    }
+
+    .about-section h2, .contact-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Form Elements */
+    .form-control {
+        font-size: 14px;
+        padding: 0.5rem;
+    }
+
+    textarea.form-control {
+        min-height: 100px;
+    }
+
+    /* Buttons */
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 14px;
+    }
+
+    /* Footer */
+    footer {
+        padding: 2rem 1rem;
+    }
+
+    .social-links a {
+        margin: 0 10px;
+        font-size: 1.5rem;
+    }
+
+    /* Grid Effects */
+    body::before {
+        background-size: 20px 20px;
+    }
+
+    /* Animations */
+    @keyframes floatElement {
+        0% {
+            transform: translate(0, 0) rotate(0deg);
+            opacity: 0;
+        }
+        100% {
+            transform: translate(50px, -50px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+
+    /* Cyber Background Elements */
+    .cyber-element {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    /* Enhanced Touch Interactions */
+    .card:hover, .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    .card:active, .btn:active {
+        transform: translateY(0);
+    }
+
+    /* Optimize Grid Pattern */
+    .about-section::before, .contact-section::before {
+        background-size: 8px 8px;
+    }
+
+    /* Adjust Text Spacing */
+    p {
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    /* Navigation Menu */
+    .navbar-collapse {
+        background: rgba(5, 5, 10, 0.95);
+        border: 1px solid rgba(0, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.5rem 1rem;
+        text-align: center;
+    }
+
+    /* Destination Cards */
+    .destination-card {
+        margin-bottom: 1.5rem;
+    }
+
+    .destination-card img {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    /* Section Spacing */
+    section {
+        margin: 2rem 0;
+    }
+
+    /* Form Layout */
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Button Position */
+    form button {
+        align-self: flex-start;
+    }
+}
+
+/* Small Phone Optimization */
+@media (max-width: 375px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .about-section, .contact-section {
+        padding: 1.5rem 0.8rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .social-links a {
+        margin: 0 8px;
+        font-size: 1.3rem;
+    }
+}
